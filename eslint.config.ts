@@ -9,7 +9,7 @@ export default antfu({
   typescript: true,
   vue: true,
 
-  ignores: ['coverage'],
+  ignores: ['coverage', 'docs'],
 
   rules: {
     'node/prefer-global/process': 'off',
