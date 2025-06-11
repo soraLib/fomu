@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [vue(), vueJsx(), UnoCSS()],
   base: '/fomu/',
   build: {
-    outDir: process.env.BUILD_ENV === 'playground' ? 'playground' : 'dist',
+    outDir: process.env.BUILD_ENV === 'doc' ? 'docs' : 'dist',
   },
   resolve: {
     alias: {

@@ -13,7 +13,7 @@
     "cz": "czg",
     "dev": "vite",
     "build": "vite build",
-    "build:playground": "cross-env BUILD_ENV=playground vite build",
+    "build:doc": "cross-env BUILD_ENV=doc vite build",
     "preview": "vite preview",
     "format": "prettier --write .",
     "lint": "eslint --fix --ext .ts,.tsx .",
