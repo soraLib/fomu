@@ -1,7 +1,7 @@
 <template>
   <a
     class="github-button"
-    href="https://github.com/soraLib/sa-form"
+    href="https://github.com/soraLib/fomu"
     target="_blank"
     rel="noopener"
     aria-label="View GitHub Repo"

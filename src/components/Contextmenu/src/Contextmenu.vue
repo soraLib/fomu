@@ -1,32 +1,10 @@
-<template>
-  <ul v-show="visible" ref="contextmenu" class="contextmenu" :style="style">
-    <NScrollbar>
-      <li
-        v-for="item in interalMenu"
-        :key="item.id"
-        class="contextmenu-item"
-        :class="[
-          `is-${item.type ?? 'primary'}`,
-          { 'is-disabled': item.disabled, 'has-divider': item.divider },
-        ]"
-        @click="onSelectItem(item)"
-      >
-        <div class="prefix-icon">
-          <VNodeComponent v-if="item.icon" :vnode="item.icon" />
-        </div>
-        <div class="content">{{ item.label }}</div>
-      </li>
-    </NScrollbar>
-  </ul>
-</template>
-
 <script lang="ts" setup>
-import { computed, nextTick, ref, watch } from 'vue'
+import type { CSSProperties } from 'vue'
+import type { ContextmenuItem, Position } from './shared'
 import { onClickOutside, useToggle } from '@vueuse/core'
 import { NScrollbar } from 'naive-ui'
+import { computed, nextTick, ref, watch } from 'vue'
 import VNodeComponent from './vnode'
-import type { ContextmenuItem, Position } from './shared'
-import type { CSSProperties } from 'vue'
 
 const props = defineProps<{
   menu: ContextmenuItem[]
@@ -42,8 +20,8 @@ const interalMenu = computed<InternalContextmenuItem[]>(() =>
   props.menu
     .filter((item) => !((item.hiddenOnDisabled ?? true) && item.disabled))
     .map((item) =>
-      typeof item === 'string' ? { label: item, id: item, value: item } : item
-    )
+      typeof item === 'string' ? { label: item, id: item, value: item } : item,
+    ),
 )
 
 const [visible, toggleVisible] = useToggle(false)
@@ -93,12 +71,36 @@ watch(visible, (visible) => {
 })
 onClickOutside(contextmenu, () => toggleVisible(false))
 
-const onSelectItem = (item: InternalContextmenuItem) => {
+function onSelectItem(item: InternalContextmenuItem) {
   if (typeof item === 'object' && item.disabled) return
   emit('select', item)
   toggleVisible(false)
 }
 </script>
+
+<template>
+  <ul v-show="visible" ref="contextmenu" class="contextmenu" :style="style">
+    <NScrollbar>
+      <li
+        v-for="item in interalMenu"
+        :key="item.id"
+        class="contextmenu-item"
+        :class="[
+          `is-${item.type ?? 'primary'}`,
+          { 'is-disabled': item.disabled, 'has-divider': item.divider },
+        ]"
+        @click="onSelectItem(item)"
+      >
+        <div class="prefix-icon">
+          <VNodeComponent v-if="item.icon" :vnode="item.icon" />
+        </div>
+        <div class="content">
+          {{ item.label }}
+        </div>
+      </li>
+    </NScrollbar>
+  </ul>
+</template>
 
 <style lang="scss" scoped>
 .contextmenu {

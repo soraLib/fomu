@@ -1,5 +1,5 @@
-import { isNumber } from 'lodash-es'
 import { type ElementSize, isObject } from '@vueuse/core'
+import { isNumber } from 'lodash-es'
 
 export type ResizeSize = Partial<ElementSize>
 export type ResizeDirection = 'left' | 'top' | 'right' | 'bottom'

@@ -1,3 +1,8 @@
+<script lang="ts" setup>
+import SaForm from '@/fomu'
+import SaHeader from './layout/Header/index.vue'
+</script>
+
 <template>
   <div id="app" class="flex flex-col h-full">
     <SaHeader />
@@ -9,11 +14,6 @@
     />
   </div>
 </template>
-
-<script lang="ts" setup>
-import SaHeader from './layout/Header/index.vue'
-import SaForm from '@/SaForm'
-</script>
 
 <style lang="scss" scoped>
 #app {
