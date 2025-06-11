@@ -44,4 +44,4 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           branch: docs
-          commit_message: '[Automated] gen website'
+          commit_message: 'chore: automated gen website'
