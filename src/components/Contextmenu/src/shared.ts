@@ -2,7 +2,7 @@ import type { Component } from 'vue'
 
 export type ContextmenuType = 'primary' | 'warning' | 'danger'
 
-export type ContextmenuItem<T = any> = {
+export interface ContextmenuItem<T = any> {
   /**
    * unique id, default as label
    */
@@ -26,12 +26,12 @@ export type ContextmenuItem<T = any> = {
   onClick?: (item: ContextmenuItem<T>) => void
 }
 
-export type Position = {
+export interface Position {
   left: number
   top: number
 }
 
-export const openContextmenu = ($event: MouseEvent, ref: any) => {
+export function openContextmenu($event: MouseEvent, ref: any) {
   $event.preventDefault()
   ref.open({ left: $event.clientX, top: $event.clientY })
 }

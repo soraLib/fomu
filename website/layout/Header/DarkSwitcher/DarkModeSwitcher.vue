@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { nextTick } from 'vue'
 import { useDark } from '@vueuse/core'
-import VPSwitch from './VPSwitch.vue'
+import { nextTick } from 'vue'
+import VPIconMoon from './icons/VPIconMoon.vue'
 
 import VPIconSun from './icons/VPIconSun.vue'
-import VPIconMoon from './icons/VPIconMoon.vue'
+import VPSwitch from './VPSwitch.vue'
 
 const isDark = useDark()
 
@@ -22,7 +22,7 @@ function toggle(event?: MouseEvent) {
   const y = event.clientY
   const endRadius = Math.hypot(
     Math.max(x, innerWidth - x),
-    Math.max(y, innerHeight - y)
+    Math.max(y, innerHeight - y),
   )
   // @ts-expect-error: Transition API
   const transition = document.startViewTransition(async () => {
@@ -44,7 +44,7 @@ function toggle(event?: MouseEvent) {
         pseudoElement: isDark.value
           ? '::view-transition-old(root)'
           : '::view-transition-new(root)',
-      }
+      },
     )
   })
 }

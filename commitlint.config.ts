@@ -1,8 +1,9 @@
-import { execSync } from 'child_process'
+import { execSync } from 'node:child_process'
 import fg from 'fast-glob'
 
-const getPackages = (packagePath) =>
-  fg.sync('*', { cwd: packagePath, onlyDirectories: true })
+function getPackages(packagePath) {
+  return fg.sync('*', { cwd: packagePath, onlyDirectories: true })
+}
 
 const scopes = [
   ...getPackages('src'),

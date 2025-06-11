@@ -1,11 +1,12 @@
+<script lang="ts" setup>
+import DarkModeSwitcher from './DarkSwitcher/DarkModeSwitcher.vue'
+import Github from './Github/index.vue'
+</script>
+
 <template>
   <header class="navbar">
-    <a
-      class="navbar-title"
-      href="/sa-form/"
-      aria-label="Sa Form, back to home`"
-    >
-      <h1>Sa Form</h1>
+    <a class="navbar-title" href="/fomu/" aria-label="Fomu, back to home`">
+      <h1>Fomu</h1>
     </a>
 
     <div class="flex-grow" />
@@ -21,11 +22,6 @@
     </div>
   </header>
 </template>
-
-<script lang="ts" setup>
-import DarkModeSwitcher from './DarkSwitcher/DarkModeSwitcher.vue'
-import Github from './Github/index.vue'
-</script>
 
 <style lang="scss" scoped>
 .navbar {

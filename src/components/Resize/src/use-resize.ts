@@ -1,20 +1,20 @@
-import { useEventListener } from '@vueuse/core'
+import type { ElementSize, MaybeRefOrGetter } from '@vueuse/core'
 import type { Ref } from 'vue'
 import type { ResizeDirection } from './resize'
-import type { ElementSize, MaybeRefOrGetter } from '@vueuse/core'
+import { useEventListener } from '@vueuse/core'
 
 export type OnResizingFn = (size: { width?: number; height?: number }) => void
-export type UseStickOptions = {
+export interface UseStickOptions {
   direction: ResizeDirection
   origin: Ref<Partial<ElementSize>>
   onResizing: OnResizingFn
   min?: number
   max?: number
 }
-export const useStickResize = (
+export function useStickResize(
   target: MaybeRefOrGetter<HTMLElement | undefined | null>,
-  options: UseStickOptions
-) => {
+  options: UseStickOptions,
+) {
   useEventListener(target, 'mousedown', (event: MouseEvent) => {
     event.stopPropagation()
     event.preventDefault()
@@ -25,7 +25,7 @@ export const useStickResize = (
   })
 }
 
-const useStickResizing = (options: UseStickOptions & { event: MouseEvent }) => {
+function useStickResizing(options: UseStickOptions & { event: MouseEvent }) {
   // stick origin data
   const origin = {
     width: options.origin.value.width,
@@ -37,7 +37,7 @@ const useStickResizing = (options: UseStickOptions & { event: MouseEvent }) => {
   const limitLength = (
     to: number,
     min = options.min ?? 0,
-    max?: number
+    max?: number,
   ): number => {
     if (to <= min) return min
     if (max && to >= max) return max

@@ -1,18 +1,10 @@
-<template>
-  <div ref="scalerRef" class="auto-scaler">
-    <div class="auto-scaler-inner" :style="scaleInnerStyle">
-      <slot />
-    </div>
-  </div>
-</template>
-
 <script lang="ts" setup>
-import { computed, ref, unref } from 'vue'
-import { useElementBounding } from '@vueuse/core'
 import type { ElementSize, MaybeRef } from '@vueuse/core'
-import type { ScaleType } from './shared'
 import type { CSSProperties } from 'vue'
-import { addUnit } from '@/SaForm/utils/style'
+import type { ScaleType } from './shared'
+import { useElementBounding } from '@vueuse/core'
+import { computed, ref, unref } from 'vue'
+import { addUnit } from '@/fomu/utils/style'
 
 const props = defineProps<{
   type: ScaleType
@@ -49,17 +41,17 @@ const scaleInnerStyle = computed<CSSProperties>(() => {
     })
   } else {
     const baseProportion = Number.parseFloat(
-      (bounding.width.value / bounding.height.value).toFixed(5)
+      (bounding.width.value / bounding.height.value).toFixed(5),
     )
     const size = unref(props.size)
     const currentProportion = Number.parseFloat(
-      (size.width / size.height).toFixed(5)
+      (size.width / size.height).toFixed(5),
     )
 
     if (currentProportion > baseProportion) {
       // width
       const scaleRatio = Number.parseFloat(
-        (bounding.width.value / size.width).toFixed(5)
+        (bounding.width.value / size.width).toFixed(5),
       )
       const ratio = scaleRatio > 1 ? 1 : scaleRatio
       Object.assign(transStyles, {
@@ -69,7 +61,7 @@ const scaleInnerStyle = computed<CSSProperties>(() => {
     } else {
       // height
       const scaleRatio = Number.parseFloat(
-        (bounding.height.value / size.height).toFixed(5)
+        (bounding.height.value / size.height).toFixed(5),
       )
       const ratio = scaleRatio > 1 ? 1 : scaleRatio
       Object.assign(transStyles, {
@@ -84,7 +76,7 @@ const scaleInnerStyle = computed<CSSProperties>(() => {
     Object.assign(transStyles, {
       marginLeft: addUnit(
         (bounding.width.value - ratioSize.value.width) / 2,
-        'px'
+        'px',
       ),
     })
   }
@@ -92,7 +84,7 @@ const scaleInnerStyle = computed<CSSProperties>(() => {
     Object.assign(transStyles, {
       marginTop: addUnit(
         (bounding.height.value - ratioSize.value.height) / 2,
-        'px'
+        'px',
       ),
     })
   }
@@ -100,6 +92,14 @@ const scaleInnerStyle = computed<CSSProperties>(() => {
   return transStyles
 })
 </script>
+
+<template>
+  <div ref="scalerRef" class="auto-scaler">
+    <div class="auto-scaler-inner" :style="scaleInnerStyle">
+      <slot />
+    </div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .auto-scaler {
