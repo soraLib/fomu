@@ -1,6 +1,7 @@
 {
   "name": "fomu",
   "version": "0.0.1",
+  "packageManager": "pnpm@10.10.0",
   "description": "A vue3 lowcode form component.",
   "author": "hfutsora",
   "repository": "https://github.com/soraLib/fomu",
