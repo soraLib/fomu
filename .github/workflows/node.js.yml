@@ -19,16 +19,16 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: main
-      - name: merge main -> docs
+      - name: merge main -> playground
         uses: devmasx/merge-branch@master
         with:
           github_token: ${{ github.token }}
           type: now
           from_branch: main
-          target_branch: docs
+          target_branch: playground
       - uses: actions/checkout@v2
         with:
-          ref: docs
+          ref: playground
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -41,8 +41,8 @@ jobs:
           version: 7
           run_install: false
       - run: pnpm install
-      - run: pnpm run build:doc
+      - run: pnpm run build:playground
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          branch: docs
+          branch: playground
           commit_message: '[Automated] gen website'
