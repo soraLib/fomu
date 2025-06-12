@@ -36,7 +36,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'pnpm'
       - run: pnpm install
       - run: pnpm run build:doc
       - uses: stefanzweifel/git-auto-commit-action@v4
