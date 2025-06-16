@@ -43,7 +43,7 @@
     "@vitejs/plugin-vue": "^5.2.4",
     "@vitejs/plugin-vue-jsx": "^4.2.0",
     "cross-env": "^7.0.3",
-    "cz-git": "^1.11.1",
+    "cz-git": "^1.11.2",
     "czg": "^1.11.1",
     "eslint": "^9.28.0",
     "fast-glob": "^3.3.3",
