@@ -37,34 +37,37 @@
 
 ### basic
 
-- [] graph
-- [] resize
-- [] move
-- [] group
-- [] grid
-- [] snapline
-- [] history
-- [] shortcut
-  - [] copy
-  - [] cut
-  - [] paste
-- [] component: dnd
-- [] component: layer
-- [] component: property
-- [] component: status bar
-- [] component: toolbar
-  - [] align
-  - [] equal size
-  - [] save
-  - [] undo / redo
-  - [] bind attributes
+- [ ] graph
+- [ ] resize
+- [ ] move
+- [ ] group
+- [ ] grid
+- [ ] snapline
+- [ ] history
+- [ ] shortcut
+  - [ ] copy
+  - [ ] cut
+  - [ ] paste
+- [ ] component: dnd
+- [ ] component: layer
+- [ ] component: property
+- [ ] component: status bar
+- [ ] component: toolbar
+  - [ ] align
+  - [ ] equal size
+  - [ ] save
+  - [ ] undo / redo
+  - [ ] bind attributes
 
 ### enhancement
 
-- [] minimap
-- [] differentiated storage
-- [] publish
-- [] component: panel
+- [ ] minimap
+- [ ] differentiated storage
+- [ ] publish
+- [ ] component: panel
+- [ ] cross-form data interaction
+- [ ] inspector
+- [ ] draft
 
 ## Inspired by
 
