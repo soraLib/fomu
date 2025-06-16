@@ -1,3 +1,4 @@
+import type { UserConfig } from '@commitlint/types'
 import { execSync } from 'node:child_process'
 import fg from 'fast-glob'
 
@@ -30,16 +31,17 @@ const gitStatus = execSync('git status --porcelain || true')
   .split('\n')
 
 const scopeComplete = gitStatus
-  .find((r) => ~r.indexOf('M  packages'))
+  .find(r => ~r.indexOf('M  packages'))
   ?.replace(/\//g, '%%')
   ?.match(/packages%%((\w|-)*)/)?.[1]
 
 const subjectComplete = gitStatus
-  .find((r) => ~r.indexOf('M  packages/components'))
+  .find(r => ~r.indexOf('M  packages/components'))
   ?.replace(/\//g, '%%')
   ?.match(/packages%%components%%((\w|-)*)/)?.[1]
 
-export default {
+const Configuration: UserConfig = {
+  extends: ['@commitlint/config-conventional'],
   rules: {
     /**
      * type[scope]: [function] description
@@ -108,3 +110,5 @@ export default {
     allowEmptyIssuePrefixs: false,
   },
 }
+
+export default Configuration

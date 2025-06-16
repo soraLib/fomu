@@ -1,0 +1,10 @@
+{
+  "name": "@fomu/common",
+  "type": "module",
+  "version": "0.0.1",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    }
+  }
+}

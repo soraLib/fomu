@@ -1,0 +1,11 @@
+{
+  "name": "@fomu/components",
+  "version": "0.0.1",
+  "sideEffects": false,
+  "main": "index.ts",
+  "module": "index.ts",
+  "types": "index.d.ts",
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  }
+}

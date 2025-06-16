@@ -15,11 +15,60 @@
 
 ## Demo
 
-[Online Website](https://soralib.github.io/fomu/).
+[Online Playground](https://soralib.github.io/fomu/).
 
 ## TODO
 
 ⚠️ fomu is currently working in progress. ⚠️
+
+## elements
+
+- Text
+- Button
+- Input
+- Textarea
+- Radio
+- Checkbox
+- Table
+- Tab
+- Container
+- LinearLayout
+- Grid
+
+### basic
+
+- [] graph
+- [] resize
+- [] move
+- [] group
+- [] grid
+- [] snapline
+- [] history
+- [] shortcut
+  - [] copy
+  - [] cut
+  - [] paste
+- [] component: dnd
+- [] component: layer
+- [] component: property
+- [] component: status bar
+- [] component: toolbar
+  - [] align
+  - [] equal size
+  - [] save
+  - [] undo / redo
+  - [] bind attributes
+
+### enhancement
+
+- [] minimap
+- [] differentiated storage
+- [] publish
+- [] component: panel
+
+## Inspired by
+
+- [@antv/x6](https://github.com/antvis/x6) JavaScript diagramming library that uses SVG and HTML for rendering
 
 ## License
 
