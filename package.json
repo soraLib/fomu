@@ -33,7 +33,7 @@
     "vue": "^3.5.16"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.14.1",
+    "@antfu/eslint-config": "^4.16.1",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@esbuild-kit/cjs-loader": "^2.4.4",
