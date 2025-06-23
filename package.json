@@ -22,7 +22,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@unocss/reset": "^66.1.4",
+    "@unocss/reset": "^66.2.3",
     "@vicons/ionicons5": "^0.13.0",
     "@vueuse/core": "^13.3.0",
     "lodash-es": "^4.17.21",
