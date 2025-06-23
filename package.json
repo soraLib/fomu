@@ -24,7 +24,7 @@
   "dependencies": {
     "@unocss/reset": "^66.1.4",
     "@vicons/ionicons5": "^0.13.0",
-    "@vueuse/core": "^13.3.0",
+    "@vueuse/core": "^13.4.0",
     "lodash-es": "^4.17.21",
     "naive-ui": "^2.41.1",
     "sa-lambda": "^1.5.0",
