@@ -54,7 +54,7 @@
     "pretty-quick": "^4.2.2",
     "sass": "^1.89.2",
     "typescript": "^5.8.3",
-    "unocss": "^66.1.4",
+    "unocss": "^66.3.2",
     "vite": "npm:rolldown-vite@^6.3.18"
   },
   "lint-staged": {
