@@ -1,10 +1,9 @@
-import type { CellMetadata, NormalCellAttributes } from './cell'
-import { Cell } from './cell'
+import type { CellMetadata } from 'fomu'
+import { Cell } from 'fomu'
 
-export type TextAttributes = NormalCellAttributes & {
+export interface TextAttributes {
   content: string
 }
-
 export type TextMetadata = CellMetadata<TextAttributes>
 
 export class Text extends Cell<TextAttributes> {

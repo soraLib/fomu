@@ -1,3 +1,5 @@
 export * from './events'
+export * from './is'
 export * from './string'
 export * from './subscriber'
+export * from './types'

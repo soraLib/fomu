@@ -1,12 +1,12 @@
 import type { Rect } from 'fomu'
+import type { CommonStyle } from 'fomu'
 import { Subscriber } from '@fomu/common'
 import { StringExt } from '@fomu/common'
 import { CellType } from 'fomu'
 
 export type CellEventName = 'mousedown' | 'mouseup' | 'mouseover' | 'click' | 'dblclick' | 'contextmenu' // TODO: etc...
 
-export interface BaseCellAttributes {}
-export type NormalCellAttributes = Rect
+export type BaseCellAttributes = CommonStyle & Rect
 export type CellMetadata<T extends object = {}>
   = keyof T extends never
     ? { id?: string, attrs?: Partial<BaseCellAttributes> }
@@ -34,10 +34,10 @@ export class Cell<Attrs extends object = {}> {
 
   static fromAttrs<A extends object>(
     this: new (metadata: CellMetadata<A>) => Cell<A>,
-    attrs: A,
+    attrs: CellMetadata<A>['attrs'],
     id?: string,
   ): Cell<A> {
-    return new this({ id, attrs })
+    return new this({ id, attrs } as CellMetadata<A>)
   }
 
   setup() {

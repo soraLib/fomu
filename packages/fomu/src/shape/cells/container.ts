@@ -1,7 +1,7 @@
-import type { CellMetadata, NormalCellAttributes } from './cell'
+import type { CellMetadata } from './cell'
 import { Cell } from './cell'
 
-export type ContainerAttributes = NormalCellAttributes & {}
+export interface ContainerAttributes {}
 export type ContainerMetadata = CellMetadata<ContainerAttributes> & {
   children?: Cell[]
 }

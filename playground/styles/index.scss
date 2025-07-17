@@ -2,3 +2,8 @@
 @use './transition';
 @use './iconfont';
 @use './var';
+
+body {
+  padding: 0;
+  margin: 0;
+}
