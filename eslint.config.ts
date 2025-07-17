@@ -16,7 +16,7 @@ export default antfu({
     'vue/no-deprecated-functional-template': 'off',
     'vue/no-template-shadow': 'off',
     'vue/require-prop-types': 'off',
-    'style/brace-style': ['error', '1tbs', { allowSingleLine: false }],
+    'style/brace-style': ['error', '1tbs', { allowSingleLine: true }],
     'no-throw-literal': 'off',
     'no-console': 'warn',
     'unused-imports/no-unused-vars': 'off',

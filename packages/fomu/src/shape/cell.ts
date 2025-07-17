@@ -22,7 +22,6 @@ export class Cell<Attrs extends object = {}> {
   readonly attrs: Partial<BaseCellAttributes> & Attrs
   el?: Element
   parent?: Cell
-  children?: Cell[]
 
   constructor(metadata: CellMetadata<Attrs> = {} as CellMetadata<Attrs>) {
     this.id = metadata.id ?? StringExt.uuid()
@@ -47,17 +46,5 @@ export class Cell<Attrs extends object = {}> {
 
   setEl(el?: Element) {
     this.el = el
-  }
-
-  setParent(parent: Cell) {
-    parent.addChild(this)
-  }
-
-  addChild(child: Cell) {
-    if (!this.children)
-      this.children = []
-
-    this.children.push(child)
-    child.parent = this
   }
 }

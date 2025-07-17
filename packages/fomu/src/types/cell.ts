@@ -4,4 +4,5 @@
 export enum CellType {
   Cell = 'cell',
   Text = 'text',
+  Container = 'container',
 }

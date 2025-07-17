@@ -23,21 +23,26 @@
 
 ## elements
 
-- Text
-- Button
-- Input
-- Textarea
-- Radio
-- Checkbox
-- Table
-- Tab
-- Container
-- LinearLayout
-- Grid
+- [x] Text
+- [ ] Button
+- [ ] Input
+- [ ] Textarea
+- [ ] Radio
+- [ ] Checkbox
+- [ ] Table
+- [ ] Tab
+- [x] Container
+- [ ] LinearLayout
+- [ ] Grid
 
 ### basic
 
 - [ ] graph
+  - [ ] add
+  - [ ] remove
+  - [ ] find
+  - [ ] exist
+  - [ ] update
 - [ ] resize
 - [ ] move
 - [ ] group
