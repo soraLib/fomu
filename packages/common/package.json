@@ -6,5 +6,6 @@
     ".": {
       "import": "./src/index.ts"
     }
-  }
+  },
+  "main": "src/index"
 }

@@ -30,15 +30,10 @@ const gitStatus = execSync('git status --porcelain || true')
   .trim()
   .split('\n')
 
-const scopeComplete = gitStatus
+const scopeComplete = gitStatus // default scope
   .find(r => ~r.indexOf('M  packages'))
   ?.replace(/\//g, '%%')
   ?.match(/packages%%((\w|-)*)/)?.[1]
-
-const subjectComplete = gitStatus
-  .find(r => ~r.indexOf('M  packages/components'))
-  ?.replace(/\//g, '%%')
-  ?.match(/packages%%components%%((\w|-)*)/)?.[1]
 
 const Configuration: UserConfig = {
   extends: ['@commitlint/config-conventional'],
@@ -103,11 +98,11 @@ const Configuration: UserConfig = {
     ],
   },
   prompt: {
-    defaultScope: scopeComplete,
-    customScopesAlign: !scopeComplete ? 'top' : 'bottom',
-    defaultSubject: subjectComplete && `[${subjectComplete}] `,
-    allowCustomIssuePrefixs: false,
-    allowEmptyIssuePrefixs: false,
+    questions: {
+      scope: {
+        enum: scopes.reduce((acc, cur) => ({ ...acc, [cur]: { title: cur } }), {}),
+      },
+    },
   },
 }
 

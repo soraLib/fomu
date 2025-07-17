@@ -4,3 +4,5 @@ dist
 dist-ssr
 *.local
 .old
+types/auto-imports.d.ts
+types/components.d.ts

@@ -3,7 +3,7 @@
     "composite": true,
     "target": "es2018",
     "jsx": "preserve",
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     "baseUrl": ".",
     "rootDir": ".",
     "module": "esnext",
@@ -17,7 +17,8 @@
     "resolveJsonModule": true,
     "types": [
       "vite/client",
-      "node"
+      "node",
+      "element-plus/global"
     ],
     "allowJs": false,
     "strict": true,

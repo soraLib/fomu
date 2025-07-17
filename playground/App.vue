@@ -1,11 +1,10 @@
 <script lang="ts" setup>
 import FomuUI from 'fomu'
-import PlaygroundHeader from './layout/Header/index.vue'
 </script>
 
 <template>
   <div id="app" class="flex flex-col h-full">
-    <PlaygroundHeader />
+    <!-- <PlaygroundHeader /> -->
 
     <FomuUI class="flex-grow mx-24 my-6 overflow-hidden shadow" />
   </div>

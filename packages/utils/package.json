@@ -1,8 +1,11 @@
 {
   "name": "@fomu/utils",
+  "type": "module",
   "version": "0.0.1",
-  "sideEffects": false,
-  "main": "index.ts",
-  "module": "index.ts",
-  "types": "index.d.ts"
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    }
+  },
+  "main": "src/index"
 }

@@ -3,10 +3,7 @@ import Provider from './AppProvider.vue'
 
 // TODO: integrate styles into src/SaForm
 import './styles/index.scss'
-
-const meta = document.createElement('meta')
-meta.name = 'naive-ui-style'
-document.head.appendChild(meta)
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 const app = createApp(Provider)
 
