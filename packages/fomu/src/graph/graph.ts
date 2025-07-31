@@ -18,4 +18,32 @@ export class Graph {
   render() {
 
   }
+
+  find() {
+
+  }
+
+  exist() {
+
+  }
+
+  add() {
+
+  }
+
+  remove() {
+
+  }
+
+  update() {
+
+  }
+
+  undo() {
+
+  }
+
+  redo() {
+
+  }
 }

@@ -1,5 +1,6 @@
 import type { CellMetadata } from 'fomu'
 import { Cell } from 'fomu'
+import { CellType } from 'fomu/types'
 
 export interface TextAttributes {
   content: string
@@ -7,7 +8,7 @@ export interface TextAttributes {
 export type TextMetadata = CellMetadata<TextAttributes>
 
 export class Text extends Cell<TextAttributes> {
-  static readonly type = 'text' as const
+  static readonly type = CellType.Text
 
   constructor(metadata: TextMetadata) {
     super(metadata)

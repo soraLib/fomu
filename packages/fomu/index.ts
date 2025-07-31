@@ -2,4 +2,4 @@ import Fomu from './src/index.vue'
 
 export default Fomu
 
-export * from './src/index'
+export * from './src'

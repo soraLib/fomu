@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import type { ContainerCell } from 'fomu'
-import FomuRenderer from '../index.vue'
+import type { AbsoluteLayout } from 'fomu'
+import { FomuRenderer } from 'fomu/renderer'
 
 defineProps<{
-  cell: ContainerCell
+  cell: AbsoluteLayout
 }>()
 </script>
 
 <template>
-  <div class="fomu-cell fomu-cell--container">
+  <div class="fomu-cell fomu-cell--absolute fomu-layout--absolute">
     <FomuRenderer v-for="child in cell.children" :key="child.id" :cell="child" />
   </div>
 </template>
 
 <style lang="scss" scoped>
-.fomu-cell--container {
+.fomu-cell--absolute {
   border: 1px dashed red;
 }
 </style>

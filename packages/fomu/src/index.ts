@@ -1,5 +1,5 @@
 export * from './graph'
 export * from './mock'
-export * from './renderer'
+// export * from './renderer'
 export * from './shape'
 export * from './types'

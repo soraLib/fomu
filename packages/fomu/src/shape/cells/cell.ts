@@ -2,7 +2,7 @@ import type { Rect } from 'fomu'
 import type { CommonStyle } from 'fomu'
 import { Subscriber } from '@fomu/common'
 import { StringExt } from '@fomu/common'
-import { CellType } from 'fomu'
+import { CellType } from 'fomu/types'
 
 export type CellEventName = 'mousedown' | 'mouseup' | 'mouseover' | 'click' | 'dblclick' | 'contextmenu' // TODO: etc...
 

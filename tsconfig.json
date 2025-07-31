@@ -9,7 +9,15 @@
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {
-      "fomu*": ["packages/fomu/*"],
+      "fomu": ["packages/fomu/*"],
+      "fomu/types": ["packages/fomu/src/types/index"],
+      "fomu/types/*": ["packages/fomu/src/types/*"],
+      "fomu/shape": ["packages/fomu/src/shape/index"],
+      "fomu/shape/*": ["packages/fomu/src/shape/*"],
+      "fomu/graph": ["packages/fomu/src/graph/index"],
+      "fomu/graph/*": ["packages/fomu/src/graph/*"],
+      "fomu/renderer": ["packages/fomu/src/renderer/index"],
+      "fomu/renderer/*": ["packages/fomu/src/renderer/*"],
       "@fomu/components/*": ["packages/components/*"],
       "@fomu/common/*": ["packages/common/*"],
       "@fomu/utils/*": ["packages/utils/*"]

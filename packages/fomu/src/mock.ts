@@ -41,7 +41,7 @@ export const mockCells: Cell[] = [
     },
   }),
 
-  Shape.Container.fromOptions({
+  Shape.Absolute.fromOptions({
     attrs: {
       x: 200,
       y: 200,

@@ -59,7 +59,8 @@
     "unocss": "^66.1.4",
     "unplugin-auto-import": "^19.3.0",
     "unplugin-vue-components": "^28.8.0",
-    "vite": "npm:rolldown-vite@^6.3.18"
+    "vite": "npm:rolldown-vite@^6.3.18",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "lint-staged": {
     "*.{vue,js,ts,jsx,tsx,md,json}": "eslint --fix"
