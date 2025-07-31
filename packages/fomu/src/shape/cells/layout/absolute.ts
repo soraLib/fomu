@@ -1,20 +1,17 @@
-import type { CellMetadata } from 'fomu'
-import { Cell } from 'fomu'
+import type { Cell, CellMetadata } from 'fomu'
+import { ContainerCell } from 'fomu'
+import { CellType } from 'fomu/types'
 
 export interface AbsoluteLayoutAttributes {}
 export type AbsoluteLayoutMetadata = CellMetadata<AbsoluteLayoutAttributes> & {
   children?: Cell[]
 }
 
-export class AbsoluteLayout extends Cell<AbsoluteLayoutAttributes> {
-  static readonly type = 'absolute' as const
-
-  children: Cell[] = []
+export class AbsoluteLayout extends ContainerCell<AbsoluteLayoutAttributes> {
+  static readonly type = CellType.Absolute
 
   constructor(metadata: AbsoluteLayoutMetadata) {
     super(metadata)
-
-    this.children = metadata.children ?? []
   }
 
   static fromOptions(metadata: AbsoluteLayoutMetadata) {

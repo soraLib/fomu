@@ -1,5 +1,6 @@
 import type { Rect } from 'fomu'
 import type { CommonStyle } from 'fomu'
+import type { Graph } from 'fomu/graph'
 import { Subscriber } from '@fomu/common'
 import { StringExt } from '@fomu/common'
 import { CellType } from 'fomu/types'
@@ -22,6 +23,7 @@ export class Cell<Attrs extends object = {}> {
   readonly attrs: Partial<BaseCellAttributes> & Attrs
   el?: Element
   parent?: Cell
+  graph: Graph = {} as Graph
 
   constructor(metadata: CellMetadata<Attrs> = {} as CellMetadata<Attrs>) {
     this.id = metadata.id ?? StringExt.uuid()
@@ -46,5 +48,22 @@ export class Cell<Attrs extends object = {}> {
 
   setEl(el?: Element) {
     this.el = el
+  }
+
+  setGraph(graph: Graph) {
+    this.graph = graph
+  }
+}
+
+export type ContainerMetadata<Attrs extends object = {}> = CellMetadata<Attrs> & {
+  children?: Cell[]
+}
+export class ContainerCell<Attrs extends object = {}> extends Cell<Attrs> {
+  children: Cell[] = []
+
+  constructor(metadata: ContainerMetadata<Attrs>) {
+    super(metadata)
+
+    this.children = metadata.children ?? []
   }
 }

@@ -8,8 +8,14 @@ const props = defineProps<{
 }>()
 
 const renderer = computed(() => getRendererFor(props.cell))
+
+const onElementClick = (evt: MouseEvent) => {
+  evt.stopPropagation()
+
+  props.cell.graph.select(props.cell)
+}
 </script>
 
 <template>
-  <component :is="renderer" :cell="cell" :style="useStyle(cell)" />
+  <component :is="renderer" :cell="cell" :style="useStyle(cell)" @click="onElementClick" />
 </template>

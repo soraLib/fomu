@@ -3,7 +3,7 @@ import { Cell } from 'fomu'
 
 export interface TabAttributes {}
 export type TabMetadata = CellMetadata<TabAttributes> & {
-  children?: Cell[]
+  // children?: Cell[]
 }
 
 export class Tab extends Cell<TabAttributes> {

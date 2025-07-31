@@ -1,15 +1,16 @@
 <script lang="ts" setup>
 import { Graph } from 'fomu/graph'
 import { FomuRenderer } from 'fomu/renderer'
+import { mockCells } from './mock'
 
 import 'virtual:uno.css'
 
-const graph = ref(new Graph({
+const graph = reactive(new Graph({
   width: 800,
   height: 600,
 }))
 
-const onRef = (el: Element) => graph.value.mount(el).render()
+const onRef = (el: Element) => graph.mount(el).setCells(mockCells)
 </script>
 
 <template>
@@ -17,3 +18,7 @@ const onRef = (el: Element) => graph.value.mount(el).render()
     <FomuRenderer v-for="cell in graph.cells" :key="cell.id" :cell="cell" />
   </div>
 </template>
+
+<style lang="scss">
+@import './renderer/styles/index.scss'
+</style>

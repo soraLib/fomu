@@ -12,6 +12,9 @@ export interface FontStyle {
 
 export interface BoxStyle {
   padding: Repeat<string, 4>
+  /**
+   * only work under LinearLayout
+   */
   margin: Repeat<string, 4>
   borderWidth: number
   borderColor: string

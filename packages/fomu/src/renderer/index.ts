@@ -11,6 +11,7 @@ const rendererMap: Record<CellType, CellRendererComponent> = {
   [CellType.Cell]: undefined,
   [CellType.Text]: TextRenderer,
   [CellType.Absolute]: AbsoluteRenderer,
+  [CellType.Container]: undefined,
 }
 
 export const getRendererFor = (cell: Cell) => rendererMap[cell.type] ?? FallbackRenderer
