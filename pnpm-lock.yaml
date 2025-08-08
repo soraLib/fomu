@@ -23,15 +23,9 @@ importers:
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
-      sa-lambda:
-        specifier: ^1.5.0
-        version: 1.5.0
       sortablejs:
         specifier: ^1.15.6
         version: 1.15.6
-      sugar-sajs:
-        specifier: 1.1.6
-        version: 1.1.6(lodash-es@4.17.21)
       vue:
         specifier: ^3.5.16
         version: 3.5.16(typescript@5.8.3)
@@ -2552,9 +2546,6 @@ packages:
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
 
-  sa-lambda@1.5.0:
-    resolution: {integrity: sha512-AjgFRjf/omk35R1WZMIG6h44e1uQuEjVsSBSBPRG6qjwreU9z6SPqJXTS9jDtrQH97kuNPifGsgAGL5lNHduHw==}
-
   sass@1.89.2:
     resolution: {integrity: sha512-xCmtksBKd/jdJ9Bt9p7nPKiuqrlBMBuuGkQlkhZjjQk3Ty48lv93k5Dq6OPkKt4XwxDJ7tvlfrTa1MPA9bf+QA==}
     engines: {node: '>=14.0.0'}
@@ -2660,11 +2651,6 @@ packages:
 
   strip-literal@3.0.0:
     resolution: {integrity: sha512-TcccoMhJOM3OebGhSBEmp3UZ2SfDMZUEBdRA/9ynfLi8yYajyWX3JiXArcJt4Umh4vISpspkQIY8ZZoCqjbviA==}
-
-  sugar-sajs@1.1.6:
-    resolution: {integrity: sha512-HO+Trfwo1uMnTLdRQcQ/1WMY92l9Xe4n1K78pre7Z0XVJIp43AnEzfh+bicQ9x/2hb44PDLiLOFZzHnezohPZw==}
-    peerDependencies:
-      lodash-es: ^4.17.21
 
   supports-color@7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
@@ -5598,10 +5584,6 @@ snapshots:
     dependencies:
       queue-microtask: 1.2.3
 
-  sa-lambda@1.5.0:
-    optionalDependencies:
-      tslib: 2.8.1
-
   sass@1.89.2:
     dependencies:
       chokidar: 4.0.3
@@ -5701,12 +5683,6 @@ snapshots:
   strip-literal@3.0.0:
     dependencies:
       js-tokens: 9.0.1
-
-  sugar-sajs@1.1.6(lodash-es@4.17.21):
-    dependencies:
-      lodash-es: 4.17.21
-    optionalDependencies:
-      tslib: 2.8.1
 
   supports-color@7.2.0:
     dependencies:

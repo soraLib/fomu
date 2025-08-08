@@ -8,7 +8,11 @@ export function bindCellGraph(arg: Cell | Cell[], graph: Graph) {
   for (const cell of cells) {
     cell.setGraph(graph)
 
-    if (isContainer(cell))
+    if (isContainer(cell)) {
       bindCellGraph(cell.children, graph)
+
+      for (const child of cell.children)
+        child.setParent(cell)
+    }
   }
 }

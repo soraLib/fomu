@@ -7,11 +7,11 @@ import { CellType } from 'fomu/types'
 
 export type CellEventName = 'mousedown' | 'mouseup' | 'mouseover' | 'click' | 'dblclick' | 'contextmenu' // TODO: etc...
 
-export type BaseCellAttributes = CommonStyle & Rect
+export type BaseCellAttributes = Partial<CommonStyle> & Rect
 export type CellMetadata<T extends object = {}>
   = keyof T extends never
-    ? { id?: string, attrs?: Partial<BaseCellAttributes> }
-    : { id?: string, attrs: Partial<BaseCellAttributes> & T }
+    ? { id?: string, attrs?: BaseCellAttributes }
+    : { id?: string, attrs: BaseCellAttributes & T }
 export interface CellEventArgs {
   cell: Cell
   event: MouseEvent
@@ -20,7 +20,7 @@ export class Cell<Attrs extends object = {}> {
   readonly subscriber: Subscriber<Record<CellEventName, [CellEventArgs]>>
   readonly type: CellType
   readonly id: string
-  readonly attrs: Partial<BaseCellAttributes> & Attrs
+  readonly attrs: BaseCellAttributes & Attrs
   el?: Element
   parent?: Cell
   graph: Graph = {} as Graph
@@ -28,7 +28,7 @@ export class Cell<Attrs extends object = {}> {
   constructor(metadata: CellMetadata<Attrs> = {} as CellMetadata<Attrs>) {
     this.id = metadata.id ?? StringExt.uuid()
     this.subscriber = new Subscriber()
-    this.attrs = { ...(metadata.attrs || {}) } as Partial<BaseCellAttributes> & Attrs
+    this.attrs = { ...(metadata.attrs || {}) } as BaseCellAttributes & Attrs
     this.type = (this.constructor as any).type ?? CellType.Cell
 
     this.setup()
@@ -52,6 +52,10 @@ export class Cell<Attrs extends object = {}> {
 
   setGraph(graph: Graph) {
     this.graph = graph
+  }
+
+  setParent(parent: Cell) {
+    this.parent = parent
   }
 }
 

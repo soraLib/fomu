@@ -14,7 +14,5 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
-.fomu-cell--absolute {
-  border: 1px dashed red;
-}
+.fomu-cell--absolute {}
 </style>

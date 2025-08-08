@@ -9,3 +9,8 @@ export interface Size {
   height: number
 }
 export type Rect = Position & Size
+
+export interface MousePosition extends Position {
+  startX: number
+  startY: number
+}
