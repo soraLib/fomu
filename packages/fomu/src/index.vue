@@ -20,5 +20,5 @@ const onRef = (el: Element) => graph.mount(el).setCells(mockCells)
 </template>
 
 <style lang="scss">
-@import './renderer/styles/index.scss'
+@use './renderer/styles/index.scss'
 </style>
