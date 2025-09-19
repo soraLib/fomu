@@ -12,10 +12,8 @@ export const useDrag = useThrottleFn((
   cell: Cell,
 ) => {
   const parent = cell.parent
-  if (!parent) {
-    console.log('parent is null', cell)
+  if (!parent)
     return
-  }
 
   selectOrAhead(cell)
 
@@ -70,50 +68,35 @@ export const useDrag = useThrottleFn((
     const finalX = rectPos._startX + moveX
     const finalY = rectPos._startY + moveY
 
-    // const parentBorderLength = (parent.attrs['border-width'] ?? 0) * 2
-    // const parentWidth = parent.attrs.width /* - parentBorderLength */
-    // const parentHeight
-    //   = parent.attrs.height
-    /*   - (parent.attrs['tab-height'] ?? 0)
-        - parentBorderLength */
+    const parentWidth = parent.attrs.width
+    const parentHeight = parent.attrs.height
 
     // limits the offset of the elements to ensure its always inside the parent.
-    const finalMoveX
-    /* =  finalX + rect.width > parentWidth
-        ? parentWidth - rect.width - rectPos._startX
-        :  */= finalX < 0
-      ? -rectPos._startX
-      : moveX
-    const finalMoveY
-    /* =  finalY + rect.height > parentHeight
-        ? parentHeight - rect.height - rectPos._startY
-        : */ = finalY < 0
-      ? -rectPos._startY
-      : moveY
+    const finalMoveX = finalX + rect.width > parentWidth
+      ? parentWidth - rect.width - rectPos._startX
+      : finalX < 0
+        ? -rectPos._startX
+        : moveX
+    const finalMoveY = finalY + rect.height > parentHeight
+      ? parentHeight - rect.height - rectPos._startY
+      : finalY < 0
+        ? -rectPos._startY
+        : moveY
 
-    /* graph.updateElemsData(
-      graph.selected.map((ele, i) => {
-        const x = cellsPos[i]._startX + finalMoveX
-        const y = cellsPos[i]._startY + finalMoveY
-
+    graph.updateCells(
+      cells.map((cell, i) => {
         return {
-          element: ele,
+          cell,
           data: {
-            x,
-            y,
+            x: cellsPos[i]._startX + finalMoveX,
+            y: cellsPos[i]._startY + finalMoveY,
           },
         }
       }),
-      false,
-    ) */
-
-    for (let i = 0; i < cells.length; i++) {
-      const x = cellsPos[i]._startX + finalMoveX
-      const y = cellsPos[i]._startY + finalMoveY
-
-      cell.attrs.x = x
-      cell.attrs.y = y
-    }
+      {
+        createHistory: false,
+      },
+    )
   }
   const elementMoveEnd = () => {
     const MOVE_END_TIME = new Date()

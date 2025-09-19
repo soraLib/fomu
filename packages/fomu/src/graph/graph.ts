@@ -1,8 +1,16 @@
 import type { Predicate } from '@fomu/common'
-import type { Cell, MousePosition } from 'fomu'
+import type { Cell, CellUpdateData, IdUpdateData, MousePosition } from 'fomu'
 import type { GraphOptions } from './options'
 import { find } from '@fomu/common'
-import { bindCellGraph, Shape } from 'fomu'
+import { bindCellGraph, isIdUpdateData, Shape } from 'fomu'
+import { assign, isEqual } from 'lodash-es'
+
+export interface UpdatCellOptions {
+  /** default false */
+  skipEqualCheck?: boolean
+  /** default true */
+  createHistory?: boolean
+}
 
 export class Graph {
   readonly options: GraphOptions
@@ -102,5 +110,88 @@ export class Graph {
 
   redo() {
 
+  }
+
+  updateCell(
+    arg: string | Cell,
+    data: Partial<Cell['attrs']>,
+    _options?: UpdatCellOptions,
+  ): Graph {
+    const cell = typeof arg === 'string' ? this.getCell(cell => cell.id === arg) : arg
+    if (!cell)
+      return this
+
+    const options: Required<UpdatCellOptions> = {
+      skipEqualCheck: false,
+      createHistory: true,
+      ..._options,
+    }
+
+    if (
+      !options?.skipEqualCheck
+      && Object.entries(data).every(([key, value]) =>
+        isEqual(value, cell.attrs[key as keyof Cell['attrs']]),
+      )
+    ) {
+      return this
+    }
+
+    if (options.createHistory) {
+      // TODO:
+      // const history = new GraphHistory({
+      //   type: HistoryType.Attr,
+      //   data: [
+      //     {
+      //       id: cell.attrs.id,
+      //       name: cell.attrs.name,
+      //       prev: cloneDeep(pick(cell.attrs, Object.keys(data))),
+      //       next: cloneDeep(data),
+      //     },
+      //   ],
+      // })
+
+      // this.addHistory(history)
+    }
+
+    assign(cell.attrs, data)
+
+    return this
+  }
+
+  updateCells(
+    arg: IdUpdateData[] | CellUpdateData[],
+    _options?: UpdatCellOptions,
+  ): Graph {
+    const options: Required<UpdatCellOptions> = {
+      skipEqualCheck: false,
+      createHistory: true,
+      ..._options,
+    }
+
+    const batch = arg.map(data => ({
+      id: isIdUpdateData(data) ? data.id : data.cell,
+      data: data.data,
+    }))
+
+    if (options.createHistory) {
+      // TODO:
+      // const record = new GraphHistory({
+      //   type: HistoryType.Attr,
+      //   data: batch.map(u => ({
+      //     id: u.cell.id,
+      //     name: u.cell.attrs.name,
+      //     prev: cloneDeep(pick(u.el.attrs, Object.keys(u.data))),
+      //     next: cloneDeep(u.data),
+      //   })),
+      // })
+
+      // this.addHistory(history)
+    }
+
+    for (const update of batch) {
+      this.updateCell(update.id, update.data, { ...options })
+    }
+
+    return this
   }
 }
