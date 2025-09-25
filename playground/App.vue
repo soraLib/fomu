@@ -7,7 +7,7 @@ import PlaygroundHeader from './layout/Header/index.vue'
   <div class="fomu-playground flex flex-col h-full">
     <PlaygroundHeader />
 
-    <FomuUI class="flex-grow mx-24 my-6 overflow-hidden " />
+    <FomuUI class="flex-grow mx-2 my-2 overflow-hidden " />
   </div>
 </template>
 

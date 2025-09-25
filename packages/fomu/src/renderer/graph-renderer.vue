@@ -14,7 +14,7 @@ const GraphTools = computed(() => props.graph.plugins.tools)
 
 <template>
   <div :ref="(el) => onRef(el as Element)" class="fomu-graph-layout">
-    <component :is="GraphTools.component" v-if="GraphTools" v-bind="GraphTools.options" :graph="graph" class="fomu-graph-tools" />
+    <component :is="GraphTools.component" v-if="GraphTools" :graph="graph" class="fomu-graph-tools" />
 
     <div class="fomu-graph">
       <FomuRenderer v-for="cell in graph.cells" :key="cell.id" :cell="cell" />
