@@ -37,6 +37,7 @@
     "@fomu/common": "workspace:*",
     "@fomu/components": "workspace:*",
     "@fomu/plugin-history": "workspace:*",
+    "@fomu/plugin-tools": "workspace:*",
     "@fomu/utils": "workspace:*",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^24.0.0",

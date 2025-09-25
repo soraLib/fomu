@@ -51,6 +51,9 @@ importers:
       '@fomu/plugin-history':
         specifier: workspace:*
         version: link:packages/plugin-history
+      '@fomu/plugin-tools':
+        specifier: workspace:*
+        version: link:packages/plugin-tools
       '@fomu/utils':
         specifier: workspace:*
         version: link:packages/utils
@@ -133,6 +136,8 @@ importers:
         version: 3.5.16(typescript@5.8.3)
 
   packages/plugin-history: {}
+
+  packages/plugin-tools: {}
 
   packages/utils: {}
 

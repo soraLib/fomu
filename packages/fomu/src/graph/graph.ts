@@ -11,6 +11,12 @@ export interface UpdatCellOptions {
   /** default true */
   createHistory?: boolean
 }
+export type GraphPluginType = 'tools' | 'layer' | 'properties' | 'panel' | 'history' | 'selection'
+export interface GraphPlugin {
+  type: GraphPluginType
+  component: ReturnType<typeof defineComponent> | JSX.Element
+  options: Record<string, any> | undefined
+}
 
 export class Graph {
   readonly options: GraphOptions
@@ -33,12 +39,27 @@ export class Graph {
     y: 0,
   }
 
+  plugins: Partial<Record<GraphPluginType, GraphPlugin>> = {}
+
   constructor(options: GraphOptions) {
     this.options = options
   }
 
   mount(el?: Element) {
     this.options.el = el
+    return this
+  }
+
+  usePlugin(plugin: GraphPlugin) {
+    const installed = this.plugins[plugin.type]
+    if (installed) {
+      installed.options = plugin.options
+
+      return this
+    }
+
+    this.plugins[plugin.type] = plugin
+
     return this
   }
 

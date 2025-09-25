@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import { PluginTools } from '@fomu/plugin-tools'
 import { Graph } from 'fomu/graph'
-import { FomuRenderer } from 'fomu/renderer'
-import { mockCells } from './mock'
+import { FomuGraphRenderer } from 'fomu/renderer'
 
 import 'virtual:uno.css'
 
@@ -10,13 +10,11 @@ const graph = reactive(new Graph({
   height: 600,
 }))
 
-const onRef = (el: Element) => graph.mount(el).setCells(mockCells)
+graph.usePlugin(PluginTools)
 </script>
 
 <template>
-  <div :ref="(el) => onRef(el as Element)" class="fomu-graph">
-    <FomuRenderer v-for="cell in graph.cells" :key="cell.id" :cell="cell" />
-  </div>
+  <FomuGraphRenderer :graph="graph" />
 </template>
 
 <style lang="scss">
