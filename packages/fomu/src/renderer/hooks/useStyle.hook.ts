@@ -1,5 +1,4 @@
-import type { CommonStyle } from 'fomu'
-import type { Cell } from 'fomu'
+import type { Cell, CommonStyle } from 'fomu'
 import type { CSSProperties } from 'vue'
 import { isNullish } from '@fomu/common'
 
@@ -9,7 +8,7 @@ const add = (result: Record<string, any>, key: keyof CSSProperties, value: any, 
 }
 
 const useSelectedStyle = (cell: Cell): CSSProperties => {
-  if (!cell.graph.isSelected(cell))
+  if (!cell.graph.isSelected(cell) || !cell.parent)
     return {}
 
   const style = cell.attrs as CommonStyle
