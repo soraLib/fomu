@@ -2,7 +2,7 @@ import type { Predicate } from '@fomu/common'
 import type { Cell, CellUpdateData, IdUpdateData, MousePosition } from 'fomu'
 import type { GraphOptions } from './options'
 import { find } from '@fomu/common'
-import { bindCellGraph, isIdUpdateData, Shape } from 'fomu'
+import { bindCellGraph, HistoryStore, isIdUpdateData, Shape } from 'fomu'
 import { assign, isEqual } from 'lodash-es'
 
 export interface UpdatCellOptions {
@@ -11,7 +11,7 @@ export interface UpdatCellOptions {
   /** default true */
   createHistory?: boolean
 }
-export type GraphPluginType = 'tools' | 'layer' | 'properties' | 'panel' | 'history' | 'selection'
+export type GraphPluginType = 'tools' | 'layer' | 'properties' | 'panel'
 export interface GraphPlugin {
   type: GraphPluginType
   component: ReturnType<typeof defineComponent> | JSX.Element
@@ -20,6 +20,8 @@ export interface GraphPlugin {
 
 export class Graph {
   readonly options: GraphOptions
+  history = new HistoryStore()
+
   /**
    * graph cells
    */
