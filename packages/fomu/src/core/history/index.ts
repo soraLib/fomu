@@ -1,20 +1,18 @@
 import type { Cell } from 'fomu'
 
-export enum HistoryOperationType {
+export enum HistoryType {
   /** init graph */
-  Init,
+  Init = 'init',
   /** add cell(s) */
-  Add,
+  Add = 'add',
   /** delete cell(s) */
-  Delete,
-  /** modify cell(s)' attribute */
-  Attr,
+  Delete = 'delete',
+  /** update cell(s)' attributes */
+  Update = 'update',
 }
 
 interface HistoryBase {
-  /** history display name */
-  name: string
-  type: HistoryOperationType
+  type: HistoryType
 }
 
 /** update history data */
@@ -22,7 +20,7 @@ export interface UHistoryData extends HistoryBase {
   id: string
   prev: Partial<Cell['attrs']>
   next: Partial<Cell['attrs']>
-  type: HistoryOperationType.Attr
+  type: HistoryType.Update
 }
 
 /** create or delete */
@@ -37,26 +35,20 @@ export type CDHistory<T extends Cell = Cell> = CDCell<T>
 export interface CDHistoryData extends HistoryBase {
   prev?: CDHistory
   next?: CDHistory
-  type: HistoryOperationType.Add | HistoryOperationType.Delete | HistoryOperationType.Init
+  type: HistoryType.Add | HistoryType.Delete | HistoryType.Init
 }
 
 export type HistoryData = CDHistoryData | UHistoryData
-
 /** is update history data */
 export const isUHistoryData = (data: HistoryData): data is UHistoryData =>
-  data.type === HistoryOperationType.Attr
+  data.type === HistoryType.Update
 
 /** is create or delete history data */
 export const isCDHistoryData = (data: HistoryData): data is CDHistoryData => {
   return !isUHistoryData(data)
 }
 
-export type CDHistoryDataList = CDHistoryData[]
-export type UHistoryDataList = UHistoryData[]
-export type HistoryDataList = CDHistoryDataList | UHistoryDataList
-export interface History {
-  data: HistoryDataList
-}
+export type History = HistoryData | HistoryData[]
 interface HistoryStoreBase {
   /** record histories */
   histories: History[]
@@ -94,5 +86,10 @@ export class HistoryStore implements HistoryStoreBase {
       return
 
     return this.histories[this.index + 1]
+  }
+
+  add(history: History) {
+    this.histories.push(history)
+    this.index += 1
   }
 }

@@ -2,8 +2,8 @@ import type { Predicate } from '@fomu/common'
 import type { Cell, CellUpdateData, IdUpdateData, MousePosition } from 'fomu'
 import type { GraphOptions } from './options'
 import { find } from '@fomu/common'
-import { bindCellGraph, HistoryStore, isIdUpdateData, Shape } from 'fomu'
-import { assign, isEqual } from 'lodash-es'
+import { bindCellGraph, HistoryStore, HistoryType, isIdUpdateData, Shape } from 'fomu'
+import { assign, cloneDeep, isEqual, pick } from 'lodash-es'
 
 export interface UpdatCellOptions {
   /** default false */
@@ -160,20 +160,12 @@ export class Graph {
     }
 
     if (options.createHistory) {
-      // TODO:
-      // const history = new GraphHistory({
-      //   type: HistoryType.Attr,
-      //   data: [
-      //     {
-      //       id: cell.attrs.id,
-      //       name: cell.attrs.name,
-      //       prev: cloneDeep(pick(cell.attrs, Object.keys(data))),
-      //       next: cloneDeep(data),
-      //     },
-      //   ],
-      // })
-
-      // this.addHistory(history)
+      this.history.add({
+        id: cell.id,
+        type: HistoryType.Update,
+        prev: cloneDeep(pick(cell.attrs, Object.keys(data))),
+        next: cloneDeep(data),
+      })
     }
 
     assign(cell.attrs, data)
@@ -192,27 +184,21 @@ export class Graph {
     }
 
     const batch = arg.map(data => ({
-      id: isIdUpdateData(data) ? data.id : data.cell,
+      cell: isIdUpdateData(data) ? this.getCell(data.id)! : data.cell,
       data: data.data,
     }))
 
     if (options.createHistory) {
-      // TODO:
-      // const record = new GraphHistory({
-      //   type: HistoryType.Attr,
-      //   data: batch.map(u => ({
-      //     id: u.cell.id,
-      //     name: u.cell.attrs.name,
-      //     prev: cloneDeep(pick(u.el.attrs, Object.keys(u.data))),
-      //     next: cloneDeep(u.data),
-      //   })),
-      // })
-
-      // this.addHistory(history)
+      this.history.add(batch.map(u => ({
+        id: u.cell.id,
+        type: HistoryType.Update,
+        prev: cloneDeep(pick(u.cell.attrs, Object.keys(u.data))),
+        next: cloneDeep(u.data),
+      })))
     }
 
     for (const update of batch) {
-      this.updateCell(update.id, update.data, { ...options })
+      this.updateCell(update.cell, update.data, { ...options, createHistory: false })
     }
 
     return this

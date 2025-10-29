@@ -1,6 +1,6 @@
 import type { Cell } from 'fomu'
 import { useThrottleFn } from '@vueuse/core'
-import { getRectangle, selectOrAhead } from 'fomu'
+import { getRectangle, HistoryType, selectOrAhead } from 'fomu'
 
 interface DragPositon {
   _startX: number
@@ -110,37 +110,34 @@ export const useDrag = useThrottleFn((
     if (moveX || moveY) {
       if (duration > 200) {
         // debounce
-        /* graph.addRecord(
-          new PcRecord({
-            time: new Date(),
-            type: BasicRecordType.Attr,
-            data: graph.selected.map((ele, i) => ({
-              id: ele.attrs.id,
-              name: ele.attrs.name,
-              prev: {
-                x: cellsPos[i]._startX,
-                y: cellsPos[i]._startY,
-              },
-              next: {
-                x: ele.attrs.x,
-                y: ele.attrs.y,
-              },
-            })),
-          }),
-        ) */
+        graph.history.add(
+          graph.selected.map((cell, i) => ({
+            id: cell.id,
+            type: HistoryType.Update,
+            prev: {
+              x: cellsPos[i]._startX,
+              y: cellsPos[i]._startY,
+            },
+            next: {
+              x: cell.attrs.x,
+              y: cell.attrs.y,
+            },
+          })),
+        )
       } else {
-        /* graph.updateElemsData(
-          graph.selected.map((ele, i) => ({
-            element: ele,
+        graph.updateCells(
+          graph.selected.map((cell, i) => ({
+            cell,
             data: {
               x: cellsPos[i]._startX,
               y: cellsPos[i]._startY,
             },
           })),
-        ) */
+          { createHistory: false },
+        )
       }
     } else {
-      // graph.setSelected(element)
+      graph.select(cell)
     }
 
     graph.setMouse()
