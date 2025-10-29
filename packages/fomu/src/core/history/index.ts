@@ -1,4 +1,7 @@
-import type { Cell } from 'fomu'
+import type { Cell, Graph } from 'fomu'
+import { restoreCell } from 'fomu'
+
+export * from './shared'
 
 export enum HistoryType {
   /** init graph */
@@ -25,6 +28,7 @@ export interface UHistoryData extends HistoryBase {
 
 /** create or delete */
 export interface CDCell<T extends Cell> {
+  id: string
   parent?: T
   children?: T[]
   attrs: T['attrs']
@@ -68,10 +72,12 @@ export class HistoryStore implements HistoryStoreBase {
   index = -1
   max: number
   recording: boolean
+  graph: Graph
 
-  constructor(config?: Partial<Pick<HistoryStoreBase, 'max' | 'recording'>>) {
+  constructor(config: Partial<Pick<HistoryStoreBase, 'max' | 'recording'>> & { graph: Graph }) {
     this.max = config?.max ?? 20
     this.recording = config?.recording ?? true
+    this.graph = config.graph
   }
 
   getPrev() {
@@ -91,5 +97,56 @@ export class HistoryStore implements HistoryStoreBase {
   add(history: History) {
     this.histories.push(history)
     this.index += 1
+  }
+
+  private applyHistory(direction: 'undo' | 'redo') {
+    const dataList = direction === 'undo'
+      ? this.getPrev()
+      : this.getNext()
+
+    if (!dataList)
+      return
+
+    const histories = Array.isArray(dataList) ? dataList : [dataList]
+
+    for (const data of histories) {
+      if (isCDHistoryData(data)) {
+        const isAdd = data.type === HistoryType.Add
+        const target = direction === 'undo' ? data.prev : data.next
+        const opposite = direction === 'undo' ? data.next : data.prev
+
+        if (isAdd) {
+        // undo Add → remove
+        // redo Add → restore
+          if (direction === 'undo') {
+            opposite?.id && this.graph.remove(opposite.id)
+          } else {
+            target && restoreCell(target, this.graph, { createHistory: false })
+          }
+        } else {
+        // undo Modify → restore prev
+        // redo Modify → restore next
+          if (direction === 'undo') {
+            target && restoreCell(target, this.graph, { createHistory: false })
+          } else {
+            opposite?.id && this.graph.remove(opposite.id)
+          }
+        }
+
+        continue
+      }
+
+      // Normal history
+      const payload = direction === 'undo' ? data.prev : data.next
+      this.graph.updateCell(data.id, payload, { createHistory: false })
+    }
+  }
+
+  undo() {
+    this.applyHistory('undo')
+  }
+
+  redo() {
+    this.applyHistory('redo')
   }
 }

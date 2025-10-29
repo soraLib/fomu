@@ -23,6 +23,7 @@ export class Cell<Attrs extends object = {}> {
   readonly attrs: BaseCellAttributes & Attrs
   el?: Element
   parent?: Cell
+  children?: Cell[]
   graph: Graph = {} as Graph
 
   constructor(metadata: CellMetadata<Attrs> = {} as CellMetadata<Attrs>) {
@@ -56,6 +57,12 @@ export class Cell<Attrs extends object = {}> {
 
   setParent(parent: Cell) {
     this.parent = parent
+    // TODO: bind each side
+  }
+
+  setChildren(children: Cell[]) {
+    this.children = children
+    // TODO: bind each side
   }
 }
 

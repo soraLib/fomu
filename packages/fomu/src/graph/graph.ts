@@ -11,6 +11,10 @@ export interface UpdatCellOptions {
   /** default true */
   createHistory?: boolean
 }
+export interface CDCellOptions {
+  /** default true */
+  createHistory?: boolean
+}
 export type GraphPluginType = 'tools' | 'layer' | 'properties' | 'panel'
 export interface GraphPlugin {
   type: GraphPluginType
@@ -20,7 +24,7 @@ export interface GraphPlugin {
 
 export class Graph {
   readonly options: GraphOptions
-  history = new HistoryStore()
+  history = new HistoryStore({ graph: this })
 
   /**
    * graph cells
@@ -115,23 +119,11 @@ export class Graph {
     return this.selected.some(cell => typeof arg === 'string' ? cell.id === arg : cell === arg)
   }
 
-  add() {
+  add(cell: Cell, _options?: CDCellOptions) {
 
   }
 
-  remove() {
-
-  }
-
-  update() {
-
-  }
-
-  undo() {
-
-  }
-
-  redo() {
+  remove(arg: string | Cell, _options?: CDCellOptions) {
 
   }
 
